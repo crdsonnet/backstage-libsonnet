@@ -89,15 +89,14 @@ local processor =
             ),
         },
       },
-  };
 
-// CRDsonnet wraps a library in { [title]: {} }, this unwraps it
-local unwrapFromCRDsonnet(astObject, title) =
-  jutils.get(
-    astObject,
-    title,
-    default=error 'field %s not found in ast' % title
-  ).expr;
+    render(name, schema):
+      jutils.get(
+        super.render(name, schema),
+        name,
+        default=error 'field %s not found in ast' % name
+      ).expr,
+  };
 
 local addNewFunction(astObject) =
   j.object.members(
@@ -158,11 +157,7 @@ local makeSubPackage(astObject, name) =
       schema,
       processor
     );
-    local unwrapped = unwrapFromCRDsonnet(
-      ast,
-      schema._kindName,
-    );
-    local withNewFunction = addNewFunction(unwrapped);
+    local withNewFunction = addNewFunction(ast);
     local subPackage = makeSubPackage(withNewFunction, schema._kindName);
 
     subPackage.toString(break='\n')
