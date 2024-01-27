@@ -151,43 +151,6 @@ local makeSubPackage(astObject, name) =
     + astObject.members
   );
 
-//j.field.func(
-//  j.fieldname.string('new'),
-//  j.binary('+', [
-//    j.functioncall(
-//      j.fieldaccess([j['self']], j.id('withKind')),
-//    ),
-//    j.functioncall(
-//      j.fieldaccess([j['self']], j.id('withApiVersion')),
-//    ),
-//  ]),
-//  [
-//    j.param.id('name'),
-//  ]
-//).toString()
-
-//{
-//  schemas:: {
-//    [schema._kindName]:
-//      processor.parse(
-//        schema._kindName,
-//        schema
-//      )
-//    for schema in kindSchemas
-//  },
-//  ast:: {
-//    [schema._kindName]:
-//      unwrapFromCRDsonnet(
-//        crdsonnet.schema.render(
-//          schema._kindName,
-//          schema,
-//          processor
-//        ),
-//        schema._kindName,
-//      )
-//    for schema in kindSchemas
-//  },
-//}.ast
 {
   [schema._kindName + '.libsonnet']:
     local ast = crdsonnet.schema.render(
