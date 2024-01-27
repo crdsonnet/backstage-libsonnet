@@ -1,0 +1,20 @@
+{
+  '#': {
+    filename: 'main.libsonnet',
+    help: 'Jsonnet library for rendering Backstage resources\n## Install\n\n```\njb install github.com/crdsonnet/backstage-libsonnet/backstageEntities@main\n```\n\n## Usage\n\n```jsonnet\nlocal backstageEntities = import "github.com/crdsonnet/backstage-libsonnet/backstageEntities/main.libsonnet"\n```\n',
+    'import': 'github.com/crdsonnet/backstage-libsonnet/backstageEntities/main.libsonnet',
+    installTemplate: '\n## Install\n\n```\njb install %(url)s@%(version)s\n```\n',
+    name: 'backstageEntities',
+    url: 'github.com/crdsonnet/backstage-libsonnet/backstageEntities',
+    usageTemplate: '\n## Usage\n\n```jsonnet\nlocal %(name)s = import "%(import)s"\n```\n',
+    version: 'main',
+  },
+  component: import './component.libsonnet',
+  user: import './user.libsonnet',
+  group: import './group.libsonnet',
+  domain: import './domain.libsonnet',
+  location: import './location.libsonnet',
+  resource: import './resource.libsonnet',
+  system: import './system.libsonnet',
+  api: import './api.libsonnet',
+}
